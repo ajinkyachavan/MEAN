@@ -1,6 +1,6 @@
 
 #placeDiv{
-    /* display: none; */
+    display: none;
     border:2px solid gray; margin:30px; padding: 15px;
     width: 70%;
 }
@@ -14,9 +14,16 @@ div ul{overflow:hidden; overflow-y:scroll;}
 }
 
 #mapDiv{
-    margin: 30px;
+    margin-right: 100px;
     padding: 15px;
   }
+
+ #youtubeDiv{
+      margin-right: 100px; 
+    
+    } 
+
+
 
 agm-map {
     height: 300px;

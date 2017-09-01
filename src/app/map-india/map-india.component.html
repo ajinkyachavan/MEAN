@@ -24,24 +24,25 @@
           </div>
         </div>
 
-         <div id="mapDiv" class="container float-right">
-        <!-- <div class="form-group">
-          <input placeholder="search for location" autocorrect="on" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
-        </div> -->
-        <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="true" [zoom]="zoom">
+         <div id="mapDiv" class="container float-right" >
+         <div class="form-group"> <!--#search [formControl]="searchControl class="form-group"-->
+          <input placeholder="search for location" autocorrect="on" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl" >
+        </div> 
+         <agm-map (mapClick)="placeMarker($event)"  [latitude]="latitude" [longitude]="longitude" [scrollwheel]="true" [zoom]="zoom">
+           
           <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
-        </agm-map>
+        </agm-map> 
       </div> 
 
-
-    <div  class="container float-right">
+      <div>
+    <div id="youtubeDiv" class="container float-right">
         <section class="panel">
-          <div class="panel-heading">Angular 4 Youtube Player Component</div>
+          <!-- <div class="panel-heading">Angular 4 Youtube Player Component</div> -->
           <div class="panel-body">
             <youtube-player 
               [videoId]="id"
-              [width]="900"
-              [height]="600"
+              [width]="width"
+              [height]="height"
               (ready)="savePlayer($event)"
               (change)="onStateChange($event)"
             >
@@ -51,11 +52,12 @@
         
 
       </div>  
-
+    </div>
         <div>
           <ul >
               <li *ngFor="let city of DataArray">
                   <h4 (click)="cityData($event)" class="nav-link">{{city.title}}</h4>
+                  
               </li>
           </ul>
       </div>

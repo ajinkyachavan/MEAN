@@ -12,6 +12,8 @@ import { FormControl } from '@angular/forms';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 
+
+
 @Component({
   selector: 'app-map-india',
   templateUrl: './map-india.component.html',
@@ -34,11 +36,16 @@ export class MapIndiaComponent  {
   public searchElementRef: ElementRef;
 
 
+  id = 'qDuKsiwS5xw';
+  width = window.innerWidth*0.6;
+  height = window.innerHeight*0.5;
+  private player;
+  private ytEvent;
+  
   constructor(public data: DataService,private mapsAPILoader: MapsAPILoader, private ngZone: NgZone){
 
-  
-  this.loadTableData();
 
+  this.loadTableData();
 
   
   // $(function(){
@@ -55,22 +62,26 @@ export class MapIndiaComponent  {
   
 
      //create search FormControl
-     //this.searchControl = new FormControl();
+     this.searchControl = new FormControl();
  
      //set current position
      this.setCurrentPosition();
+
+     
  
      //load Places Autocomplete
      this.mapsAPILoader.load().then(() => {
-       let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-         types: ["address"]
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+         types: ['address'] //address  [ '(cities)', '(regions)', 'country', 'postal_code', 'sublocality', 'establishment', 'address', 'geocode'] 
+
        });
        autocomplete.addListener("place_changed", () => {
          this.ngZone.run(() => {
            //get the place result
            let place: google.maps.places.PlaceResult = autocomplete.getPlace();
- 
-           //verify result
+          //  service = new google.maps.places.PlacesService(map);
+          //  service.nearbySearch(request, callback);
+          //  //verify result
            if (place.geometry === undefined || place.geometry === null) {
              return;
            }
@@ -81,18 +92,31 @@ export class MapIndiaComponent  {
            this.zoom = 15;
            
           });
-       });
+       }); 
      });   
   }
 
 
-  private setCurrentPosition() {
-    if ("geolocation" in navigator) {
+  private setCurrentPosition(newPosition: any = null) {
+    console.log(newPosition+" newPosition")
+    if ("geolocation" in navigator && newPosition == null) {
       navigator.geolocation.getCurrentPosition((position) => {
         this.latitude = position.coords.latitude;
         this.longitude = position.coords.longitude;
         this.zoom = 12;
+        
       });
+    }else{
+      var myPosition = new Position();
+      myPosition = newPosition;
+
+      console.log(newPosition.latitude,newPosition.longitude," newPosition andar")
+      
+      this.latitude = myPosition.coords.latitude;
+      this.longitude = myPosition.coords.longitude;
+      this.zoom = 12;
+
+      
     }
   }
   
@@ -105,6 +129,12 @@ export class MapIndiaComponent  {
     );
   }
 
+  placeMarker($event){
+    console.log($event.coords.lat);
+    console.log($event.coords.lng);
+    this.latitude = $event.coords.lat;
+    this.longitude = $event.coords.lng;
+  }
 
   cityData(data){
     //console.log('printing data - '+data.target.innerText);
@@ -116,13 +146,20 @@ export class MapIndiaComponent  {
         result = this.DataArray[i];
       }
     }
-    console.log(result)
-    //document.getElementById('placeDiv').style.display = 'block';
+    //console.log(result)
+    document.getElementById('placeDiv').style.display = 'block';
     
     document.getElementById("frameImg").setAttribute('src', result.imageUrl);
     document.getElementById("frameTitle").innerText = result.bio;
     document.getElementById("framePara").innerText = result.description;
-    //console.log(document.getElementById("frameImg").getAttribute("src"))
+    
+    this.latitude = parseFloat(result.latitude);
+    this.longitude = parseFloat(result.longitude);
+   // this.setCurrentPosition(result);
+    // this.latitude = result.latitude;
+    // this.longitude = result.longitude;
+    // this.zoom = 12;
+    // //console.log(document.getElementById("frameImg").getAttribute("src"))
      /*
     document.getElementById("placeDiv").style.border = "1px solid #808080";
     document.getElementById("placeDiv").style.margin = "30px";
@@ -135,10 +172,6 @@ export class MapIndiaComponent  {
   
   }
 
-  id = 'qDuKsiwS5xw';
-  private player;
-  private ytEvent;
-  
 
   onStateChange(event) {
     this.ytEvent = event.data;
