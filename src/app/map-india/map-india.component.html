@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>India Map</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <script src="ng-youtube-embed-iframe/dist/ng-youtube.min.js"></script>
+  
+</head>
+<body>
+
+
+    <!-- <iframe width="1000px" height="800px" style="float:right;" src="" name="iframe_a">
+        <p>Your browser does not support iframes.</p>
+        </iframe> -->
+        
+        <div id="placeDiv" class="container float-right rounded">
+          <img id="frameImg" width="150px" height="150px" class="float-left" src="{{DataArray[0].imageUrl}}" alt=""  >
+          <div style=" margin-left:170px; padding:10px;">
+            <p id="frameTitle"  class="text-left float-center"><b>{{DataArray[0].bio}}</b></p>
+            <p id="framePara" class="text-left ">{{DataArray[0].description}}</p>
+          </div>
+        </div>
+
+         <div id="mapDiv" class="container float-right">
+        <!-- <div class="form-group">
+          <input placeholder="search for location" autocorrect="on" autocapitalize="off" spellcheck="off" type="text" class="form-control" #search [formControl]="searchControl">
+        </div> -->
+        <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="true" [zoom]="zoom">
+          <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+        </agm-map>
+      </div> 
+
+
+    <div  class="container float-right">
+        <section class="panel">
+          <div class="panel-heading">Angular 4 Youtube Player Component</div>
+          <div class="panel-body">
+            <youtube-player 
+              [videoId]="id"
+              [width]="900"
+              [height]="600"
+              (ready)="savePlayer($event)"
+              (change)="onStateChange($event)"
+            >
+            </youtube-player>
+          </div>
+        </section>
+        
+
+      </div>  
+
+        <div>
+          <ul >
+              <li *ngFor="let city of DataArray">
+                  <h4 (click)="cityData($event)" class="nav-link">{{city.title}}</h4>
+              </li>
+          </ul>
+      </div>
+        
+
+    <!-- <table class="table">    <thead>
+        <tr>
+          <th>id</th>
+          <th>Title</th>
+          <th>Bio</th>
+          <th>Description</th>
+          <th>Latitude</th>
+          <th>Longitude</th>
+        </tr>
+      </thead>
+      
+  
+       <tr *ngFor="let data of DataArray; let i = index">
+          <th scope="row">{{i+1}}</th>        
+        <td>{{ data.title }}</td>
+        <td>{{ data.bio }}</td>
+        <td>{{ data.description }}</td>
+        <td>{{ data.latitude }}</td>
+        <td>{{ data.longitude }}</td> 
+      </tr> 
+  
+    </table> -->
+  
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+  
+</body>
+</html>

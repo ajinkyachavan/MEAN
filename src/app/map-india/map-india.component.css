@@ -1,0 +1,24 @@
+
+#placeDiv{
+    /* display: none; */
+    border:2px solid gray; margin:30px; padding: 15px;
+    width: 70%;
+}
+
+
+div ul{height: 900px; width: 25%;}
+div ul{overflow:hidden; overflow-y:scroll;}
+
+#frameTitle{
+    font-weight: bold;    
+}
+
+#mapDiv{
+    margin: 30px;
+    padding: 15px;
+  }
+
+agm-map {
+    height: 300px;
+  }
+
