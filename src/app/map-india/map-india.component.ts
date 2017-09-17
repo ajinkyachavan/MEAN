@@ -32,14 +32,15 @@ export class MapIndiaComponent {
   public searchControl: FormControl;
   public zoom: number;
   isClicked: boolean = false;
+  selectedPlace = ''
 
   @ViewChild('search')
   public searchElementRef: ElementRef;
 
 
   id = 'qDuKsiwS5xw';
-  width = window.innerWidth * 0.4;
-  height = window.innerHeight * 0.5;
+  width = 640;
+  height = 480;
   private player;
   private ytEvent;
 
@@ -147,7 +148,7 @@ export class MapIndiaComponent {
   cityData(data) {
 
   this.isClicked = true;
-    //console.log('printing data - '+data.target.innerText);
+    //console.log('printing data - '+data);
     this.result = this.DataArray[0];
 
     for (var i = 0; i < this.DataArray.length; i++) {
@@ -158,7 +159,7 @@ export class MapIndiaComponent {
     }
     //console.log(result)
     document.getElementById('placeDiv').style.display = 'block';
-
+    document.getElementById('ytDiv').style.display = 'block';
     document.getElementById("frameImg").setAttribute('src', this.result.imageUrl);
     document.getElementById("frameTitle").innerText = this.result.bio;
     document.getElementById("framePara").innerText = this.result.description;
@@ -180,6 +181,19 @@ export class MapIndiaComponent {
      document.getElementById("placeDiv").appendChild(p).innerText = data.target.innerText;
    */
 
+  } //end of cityData
+
+  performClick(data){
+    //document.getElementById('')
+    console.log(data);
+    this.selectedPlace = data.title;
+    //this.cityData(this.selectedPlace);
+    var placeList = document.getElementById('ul_dataList').getElementsByTagName("li");
+    //console.log(placeList);
+    for(var j=0; j<placeList.length; j++){
+      //console.log(placeList[j].innerText);
+    //  if(this.selectedPlace)
+    }
   }
 
 
@@ -196,6 +210,6 @@ export class MapIndiaComponent {
 
   pauseVideo() {
     this.player.pauseVideo();
-  }
 
+  }
 }

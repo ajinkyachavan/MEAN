@@ -1,14 +1,19 @@
-#placeDiv {
+/* #placeDiv {
     display: none;
     border: 2px solid gray;
     margin: 30px;
     padding: 15px;
     width: 70%;
+} */
+
+#dataList {
+    width: 20%;
+    padding: 5px;
+    margin: 5px;
 }
 
 div#dataList ul {
     height: 900px;
-    width: 25%;
 }
 
 div#dataList ul {
@@ -17,15 +22,16 @@ div#dataList ul {
 }
 
 div#ytLinks {
-    width: 40%;
+    width: 30%;
+    padding-right: 20px;
+    padding-left: 20px;
 }
 
 #ytDiv {
-    /* display: none; */
-    border: 2px solid gray;
+    display: none;
+    /* border: 2px solid gray; */
     margin: 30px;
     padding: 15px;
-    width: 70%;
 }
 
 div#ytLinks ul {
@@ -34,10 +40,11 @@ div#ytLinks ul {
     padding-bottom: 20px;
 }
 
-div#ytLinks ul {
+
+/* div#ytLinks ul {
     overflow: hidden;
     overflow-y: scroll;
-}
+} */
 
 #frameTitle {
     font-weight: bold;
@@ -58,4 +65,9 @@ div#ytLinks ul {
 
 agm-map {
     height: 300px;
+}
+
+#placeDiv {
+    display: none;
+    width: 20%;
 }

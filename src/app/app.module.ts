@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { PlanMyTripComponent } from './plan-my-trip/plan-my-trip.component';
@@ -36,10 +36,10 @@ const appRoutes: Routes = [
       apiKey: 'AIzaSyDe13TnWVfcgQx-kxNT-ck8mJ4RYMjNcJY',
       libraries: ["places"],
       region: 'IN'
-      
+
     }),
-    FormsModule,
-    ReactiveFormsModule,
+     FormsModule,
+     ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(
       appRoutes,

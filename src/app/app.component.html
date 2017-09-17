@@ -1,70 +1,121 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-  
+    <title>Intro to Node and MongoDB</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
 </head>
+
 <body>
 
-       <nav class="navbar navbar-toggleable-md fixed-top navbar-inverse bg-inverse bg-faded">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-toggleable-md fixed-top navbar-inverse bg-inverse bg-faded">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-        <a class="navbar-brand" href="#">The Indian App</a>
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li class="nav-item active">
-              <a routerLink="/planmytrip" routerLinkActive="active" class="nav-link">Plan My Trip</a>
-            </li>
-          <li class="nav-item active">
-              <a routerLink="/mapindia" routerLinkActive="active" class="nav-link">Map-India</a>
-            </li>
-          <li class="nav-item active">
-              <a routerLink="/contactus" routerLinkActive="active" class="nav-link">Contact Us</a>
-            </li>
-            <li>
-              
-        <form  method="post" action="/addname" class="form-inline">
-          <label class="sr-only" for="inlineFormInput">Name</label>
-          <input type="text" name="name" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Jane Doe">
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <a class="navbar-brand" href="#">The Indian App</a>
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a routerLink="/planmytrip" routerLinkActive="active" class="nav-link">Plan My Trip</a>
+                </li>
+                <li class="nav-item active">
+                    <a routerLink="/mapindia" routerLinkActive="active" class="nav-link">Map-India</a>
+                </li>
+                <li class="nav-item active">
+                    <a routerLink="/contactus" routerLinkActive="active" class="nav-link">Contact Us</a>
+                </li>
+                <li>
 
-          <input type="text" name="email" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="abc@gmail.com">
+                    <form method="post" action="/addname" class="form-inline">
+                        <label class="sr-only" for="inlineFormInput">Name</label>
+                        <input type="text" name="name" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="Jane Doe">
 
-          <input type="tel" name="phone" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="5138651234">
+                        <input type="text" name="email" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="abc@gmail.com">
 
-          <button class="btn btn-primary float-right my-2 my-sm-0" type="submit">Sign up</button>
-          
+                        <input type="tel" name="phone" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput" placeholder="5138651234">
+
+                        <button class="btn btn-primary float-right my-2 my-sm-0" type="submit">Sign up</button>
+
+
+                    </form>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+
+
+
+
+
+
+
+    <!-- (ngSubmit)="onSubmit(myForm)" [formGroup]="myForm"  -->
+
+    <!-- <form id="userForm" method="post" action="../addname" >
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Name</label>
+            <div  class="col-sm-10">
+              <input id="formName" name="name" class="form-control"  placeholder="Name" required>
+
+
+              </div>
+
+        </div>
+
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Email (abc@xyz.com):</label>
+            <div class="col-sm-10">
+          <input class="form-control" name="email"  placeholder="Your email" pattern='[^\s?]+[a-z0-9*]+[@]+[a-z0-9*]+[.]+([a-z0-9]{3}|[a-z0-9]{4})' required>
+
+            </div>
+
+        </div>
+
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Phone (format: x-xxx-xxx-xxxx):</label>
+            <div class="col-sm-10">
+          <input class="form-control" name="phone" placeholder="5136664234"  type="tel"  pattern='([0-9]{1}[\-])?[0-9]{3}([\-])?[0-9]{3}([\-])?[0-9]{4}' required>
+
+            </div>
+
+        </div>
+
+        <div class="row justify-content-around">
+          <button class="btn btn-primary " type="submit" >
+            Sign up
+          </button>
+          <button class="nav-link inline" >
+              Log in
+            </button>
+        </div>
 
         </form>
-            </li>
-        </ul>
 
-      </div>
-       </nav>
+  </div>-->
 
-       
-  <!-- <form method="post" action="/addname">
-    <label>Enter Your Name</label><br>
-    <input type="text" name="name" placeholder="Jane Doe" required>
-    <input type="email" name="email" placeholder="abc@gmail.com" required>
-    <input type="tel" name="phone" placeholder="5138863889" required>
-    <input type="text" name="dataid" placeholder="dataid">
-    
-    <input type="submit" value="Add Name">
-  </form> -->
-
-  <div id="routerData" > 
-      <router-outlet></router-outlet>
+    <div id="routerData">
+        <router-outlet></router-outlet>
     </div>
 
-  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <!--
+    <h1>Into to Node and MongoDB</h1>
+    <form method="post" action="../addname">
+      <label>Enter Your Name</label><br>
+      <input type="text" name="firstName" placeholder="Enter first name..." required>
+      <input type="text" name="lastName" placeholder="Enter last name..." required>
+      <input type="submit" value="Add Name">
+    </form>
+  -->
 
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
 </body>
+
 </html>

@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactUsComponent implements OnInit {
 
-  title = 'wd'
+  title = 'wd';
 
   constructor() { }
 
