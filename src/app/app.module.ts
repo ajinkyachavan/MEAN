@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
- import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { PlanMyTripComponent } from './plan-my-trip/plan-my-trip.component';
@@ -13,6 +13,7 @@ import { YoutubePlayerModule } from 'ng2-youtube-player';
 import {} from '@types/googlemaps';
 import {GooglePlaceModule} from 'ng2-google-place-autocomplete';
 import { FormControl } from '@angular/forms';
+import { NavbarComponent } from './navbar/navbar.component';
 
 const appRoutes: Routes = [
   { path: 'planmytrip', component: PlanMyTripComponent },
@@ -26,7 +27,8 @@ const appRoutes: Routes = [
      AppComponent,
     PlanMyTripComponent,
     ContactUsComponent,
-    MapIndiaComponent
+    MapIndiaComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
@@ -38,8 +40,6 @@ const appRoutes: Routes = [
       region: 'IN'
 
     }),
-     FormsModule,
-     ReactiveFormsModule,
     HttpModule,
     RouterModule.forRoot(
       appRoutes,

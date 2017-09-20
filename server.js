@@ -45,12 +45,13 @@ app.get('*', (req, res) => {
 });
 
 
-app.post("/addname", (req, res) => {
+app.post("/", (req, res) => {
     // console.log(req.body)
     var myData = new User({ name: req.body.name, email: req.body.email, phone: req.body.phone, dataid: req.body.dataid });
     myData.save()
         .then(item => {
-            res.send("item saved to database");
+            //res.send("item saved to database");
+            res.redirect("/");
         })
         .catch(err => {
             res.status(400).send("unable to save to database");
