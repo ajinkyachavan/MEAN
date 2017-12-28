@@ -1,56 +1,33 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { NgModule, ApplicationRef, NO_ERRORS_SCHEMA } from '@angular/core';
+
 import { AppComponent } from './app.component';
-import { PlanMyTripComponent } from './plan-my-trip/plan-my-trip.component';
-import { ContactUsComponent } from './contact-us/contact-us.component';
-import { MapIndiaComponent } from './map-india/map-india.component';
-import { RouterModule, Routes } from '@angular/router';
-import { AgmCoreModule } from '@agm/core';
-import { DataService } from './services/data.service';
+import { HttpModule } from '@angular/http';
+import { DataService } from './data.service';
+import { CommonModule } from '@angular/common/';
+import { FormsModule } from '@angular/forms';
 import { YoutubePlayerModule } from 'ng2-youtube-player';
-import {} from '@types/googlemaps';
-import {GooglePlaceModule} from 'ng2-google-place-autocomplete';
-import { FormControl } from '@angular/forms';
-import { NavbarComponent } from './navbar/navbar.component';
+import {} from '@types/youtube';
 
-const appRoutes: Routes = [
-  { path: 'planmytrip', component: PlanMyTripComponent },
-  { path: 'mapindia', component: MapIndiaComponent },
-  { path: 'contactus', component: ContactUsComponent }
-];
-
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
   declarations: [
-     AppComponent,
-    PlanMyTripComponent,
-    ContactUsComponent,
-    MapIndiaComponent,
-    NavbarComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     YoutubePlayerModule,
-    GooglePlaceModule,
-      AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyDe13TnWVfcgQx-kxNT-ck8mJ4RYMjNcJY',
-      libraries: ["places"],
-      region: 'IN'
-
-    }),
+    CommonModule,
     HttpModule,
-    RouterModule.forRoot(
-      appRoutes,
-      { enableTracing: true } // <-- debugging purposes only
-    )
+    FormsModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyBCpZ7UDPTLXNaypNN_jiIkjpyMyk_3M8s'
+    })
   ],
-  providers: [DataService], //DataService
-  bootstrap: [AppComponent]
+  providers: [DataService], // <-Add DataService
+  bootstrap: [AppComponent],
+  schemas: [ NO_ERRORS_SCHEMA ]
+
 })
-export class AppModule {
-
-
-
- }
+export class AppModule { }
